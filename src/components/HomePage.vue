@@ -1,17 +1,12 @@
 <template>
   <section>
-    <div class="title">
-      Posh stays that make you feel at home
-    </div>
   </section>
 </template>
 
 <script>
-import apartmentData from '../../stays.json'
 export default {
   data () {
     return {
-      apartmentData: apartmentData
     }
   }
 }

@@ -5,6 +5,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import 'bulma/css/bulma.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 Vue.config.productionTip = false
 Vue.use(Buefy)

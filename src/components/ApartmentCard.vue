@@ -1,9 +1,39 @@
 <template>
   <div>
+    <div class="tabs is-right m-5">
+      <ul>
+        <!-- <div class="button">
+          <input type="search" v-model="search" placeholder="Search..." />
+          Search -->
+        <!-- </div> -->
+         <div class="input-group d-flex justify-content-end m-3">
+          <!-- <div class="input-group-prepend">
+          </div> -->
+          <input
+            type="search"
+            v-model="location"
+            class=""
+            placeholder="LOCATION"
+          />
+          <input
+            type="text"
+            class=""
+            v-model="guests"
+            placeholder="Add guests"
+          />
+          <span class="input-group-text" id=""
+            ><i class="bi bi-search"></i
+          ></span>
+        </div>
+      </ul>
+    </div>
+     <div class="title">
+      Stays in Finland
+    </div>
     <div class="columns">
       <div
         class="column"
-        v-for="apartment in apartmentData.slice(0, 3)"
+        v-for="apartment in filteredData.slice(0, 3)"
         :key="apartment.id"
       >
         <div class="card">
@@ -22,9 +52,17 @@
                 </p>
               </div>
               <div class="media-content">
-                <p class="button subtitle is-6 media-right">
-                  {{ apartment.superHost }}
+                <p
+                  v-if="apartment.superHost === true"
+                  class="button subtitle is-6 media-right"
+                >
+                  SuperHost
                 </p>
+                <p
+                  v-else-if="apartment.superHost === false"
+                  class="button subtitle"
+                  style="display: none"
+                ></p>
               </div>
               <div class="media-right">
                 <p class="button">Max Guests: {{ apartment.maxGuests }}</p>
@@ -44,7 +82,7 @@
     <div class="columns">
       <div
         class="column"
-        v-for="apartment in apartmentData.slice(4, 7)"
+        v-for="apartment in filteredData.slice(4, 7)"
         :key="apartment.id"
       >
         <div class="card">
@@ -63,9 +101,17 @@
                 </p>
               </div>
               <div class="media-content">
-                <p class="button subtitle is-6 media-right">
-                  {{ apartment.superHost }}
+                <p
+                  v-if="apartment.superHost === true"
+                  class="button subtitle is-6 media-right"
+                >
+                  SuperHost
                 </p>
+                <p
+                  v-else-if="apartment.superHost === false"
+                  class="button subtitle"
+                  style="display: none"
+                ></p>
               </div>
               <div class="media-right">
                 <p class="button">Max Guests: {{ apartment.maxGuests }}</p>
@@ -73,30 +119,43 @@
             </div>
             <div class="content">
               {{ apartment.title }}
-              <div></div>
             </div>
           </div>
-          {{ apartment.country }}, {{ apartment.city }}
+          <div class="m-3 p-3">
+            {{ apartment.country }}, {{ apartment.city }}
+          </div>
         </div>
       </div>
-      <!-- <div class="column">Second column</div>
-      <div class="column">Third column</div> -->
     </div>
-
-    <!-- <div>
-      <progress class="progress is-small is-primary" max="100">15%</progress>
-      <progress class="progress is-danger" max="100">30%</progress>
-      <progress class="progress is-medium is-dark" max="50">45%</progress>
-      <progress class="progress is-large is-info" max="100">60%</progress>
-    </div> -->
   </div>
 </template>
 <script>
 import apartmentData from '../../stays.json'
+
 export default {
   data () {
     return {
+      // search: '',
+      location: '',
+      guests: '',
       apartmentData: apartmentData
+    }
+  },
+  computed: {
+    filteredData () {
+      return this.apartmentData
+        .filter((apartment) => {
+          return (
+            apartment.city.match(this.location) ||
+            apartment.country.match(this.location)
+            // apartment.title.match(this.search) ||
+            // apartment.type.match(this.search)
+          )
+        })
+        .filter((apartment) => {
+          console.log(this.guests)
+          return apartment.maxGuests.toString().match(this.guests)
+        })
     }
   }
 }
