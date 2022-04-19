@@ -30,10 +30,10 @@
      <div class="title">
       Stays in Finland
     </div>
-    <div class="columns">
+    <div class="columns d-flex flex-wrap">
       <div
         class="column"
-        v-for="apartment in filteredData.slice(0, 3)"
+        v-for="apartment in filteredData.slice(0,3)"
         :key="apartment.id"
       >
         <div class="card">
@@ -79,7 +79,7 @@
       <!-- <div class="column">Second column</div>
       <div class="column">Third column</div> -->
     </div>
-    <div class="columns">
+    <div class="columns d-flex flex-wrap">
       <div
         class="column"
         v-for="apartment in filteredData.slice(4, 7)"

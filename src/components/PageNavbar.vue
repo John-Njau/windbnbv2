@@ -7,7 +7,7 @@
         |
         <li><router-link to="/apartments">Apartments</router-link></li>
         |
-        <li><router-link to="/ApartmentPics">Pictures</router-link></li>
+        <li><router-link to="/apartmentsPics">Pictures</router-link></li>
         |
         <li><router-link to="/checkout">Checkout</router-link></li>
       </ul>

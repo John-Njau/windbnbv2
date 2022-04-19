@@ -1,13 +1,12 @@
-    <template>
+  <template>
   <div>
-    fffffff
     <div
       class="card"
-      v-for="apartment in apartmentData.slice(0, 3)"
+      v-for="apartment in apartmentData.slice()"
       :key="apartment.id"
     >
       <div class="card-image">
-        <figure class="image is-3by3">
+        <figure class="image">
           <img :src="apartment.photo" />
         </figure>
       </div>
